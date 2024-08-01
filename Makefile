@@ -178,6 +178,15 @@ endif
 OGG_LIBS := -lvorbisfile
 TTF_LIBS := -lSDL2_ttf
 
+ifeq ($(PLATFORM),wii)
+	OGG_LIBS := $(shell pkg-config --static --libs vorbisfile)
+	OGL_LIBS := $(shell pkg-config --static --libs opengl)
+	TTF_LIBS := $(shell pkg-config --static --libs SDL2_ttf)
+	BASE_LIBS += $(shell pkg-config --static --libs libpng) -logc -lm
+	ALL_CPPFLAGS += $(shell pkg-config --cflags opengl)
+	EXT := .elf
+endif
+
 ALL_LIBS := $(HMD_LIBS) $(TILT_LIBS) $(INTL_LIBS) $(TTF_LIBS) \
 	$(OGG_LIBS) $(SDL_LIBS) $(OGL_LIBS) $(BASE_LIBS)
 
