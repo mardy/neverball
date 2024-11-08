@@ -522,6 +522,8 @@ int main(int argc, char *argv[])
     SDL_Joystick *joy = NULL;
     int t1, t0;
 
+    chdir("/apps/neverball");
+
     if (!fs_init(argv[0]))
     {
         fprintf(stderr, "Failure to initialize virtual file system (%s)\n",
