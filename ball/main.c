@@ -222,6 +222,15 @@ static int loop(void)
         case SDL_QUIT:
             return 0;
 
+        case SDL_JOYDEVICEADDED:
+            {
+                SDL_Joystick *joy = NULL;
+                joy = SDL_JoystickOpen(config_get_d(CONFIG_JOYSTICK_DEVICE));
+                if (joy)
+                    SDL_JoystickEventState(SDL_ENABLE);
+            }
+            break;
+
         case SDL_MOUSEMOTION:
             /* Convert to OpenGL coordinates. */
 
@@ -293,6 +302,16 @@ static int loop(void)
 
         case SDL_JOYAXISMOTION:
             st_stick(e.jaxis.axis, JOY_VALUE(e.jaxis.value));
+            break;
+
+        case SDL_JOYHATMOTION:
+            float x = 0.0f, y = 0.0f;
+            if (e.jhat.value & SDL_HAT_UP) y = -1.0f;
+            else if (e.jhat.value & SDL_HAT_DOWN) y = 1.0f;
+            if (e.jhat.value & SDL_HAT_LEFT) x = -1.0f;
+            else if (e.jhat.value & SDL_HAT_RIGHT) x = 1.0f;
+            st_stick(config_get_d(CONFIG_JOYSTICK_AXIS_X0), x);
+            st_stick(config_get_d(CONFIG_JOYSTICK_AXIS_Y0), y);
             break;
 
         case SDL_JOYBUTTONDOWN:
@@ -563,6 +582,7 @@ int main(int argc, char *argv[])
         if (joy)
             SDL_JoystickEventState(SDL_ENABLE);
     }
+    SDL_SetHint(SDL_HINT_ACCELEROMETER_AS_JOYSTICK, "1");
 
     /* Initialize audio. */
 
