@@ -990,9 +990,11 @@ void r_apply_mtrl(struct s_rend *rend, int mi)
 
             glEnable (GL_POINT_SPRITE);
             glTexEnvi(GL_POINT_SPRITE, GL_COORD_REPLACE, GL_TRUE);
+#if 0
             glPointParameterfv_(GL_POINT_DISTANCE_ATTENUATION, c);
             glPointParameterf_ (GL_POINT_SIZE_MIN, 1);
             glPointParameterf_ (GL_POINT_SIZE_MAX, s);
+#endif
         }
         else
         {
