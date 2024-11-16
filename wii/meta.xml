@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<app version="1">
+  <name>Neverball</name>
+  <coder>Jānis Rūcis, Alberto Mardegan (port)</coder>
+  <version>1.6.0+git20180603</version>
+  <release_date>20241110912132</release_date>
+  <short_description>3D floor-tilting game</short_description>
+  <long_description>Balance on narrow bridges, navigate mazes, ride moving platforms, and dodge pushers and shovers to get to the goal. Race against the clock to collect coins to earn extra balls.</long_description>
+</app>
