@@ -426,11 +426,20 @@ static void play_loop_point(int id, int x, int y, int dx, int dy)
 
 static void play_loop_stick(int id, int a, float v, int bump)
 {
-    if (config_tst_d(CONFIG_JOYSTICK_AXIS_X0, a))
+#ifdef __WII__
+#  define TILT_AXIS_X CONFIG_JOYSTICK_AXIS_X1
+#  define TILT_AXIS_Y CONFIG_JOYSTICK_AXIS_Y1
+#  define ROT_AXIS_X CONFIG_JOYSTICK_AXIS_X0
+#else
+#  define TILT_AXIS_X CONFIG_JOYSTICK_AXIS_X0
+#  define TILT_AXIS_Y CONFIG_JOYSTICK_AXIS_Y0
+#  define ROT_AXIS_X CONFIG_JOYSTICK_AXIS_X1
+#endif
+    if (config_tst_d(TILT_AXIS_X, a))
         game_set_z(v);
-    if (config_tst_d(CONFIG_JOYSTICK_AXIS_Y0, a))
+    if (config_tst_d(TILT_AXIS_Y, a))
         game_set_x(v);
-    if (config_tst_d(CONFIG_JOYSTICK_AXIS_X1, a))
+    if (config_tst_d(ROT_AXIS_X, a))
     {
         if      (v > 0.0f)
             rot_set(DIR_R, +v, 1);

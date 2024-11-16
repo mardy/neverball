@@ -542,7 +542,10 @@ int main(int argc, char *argv[])
     SDL_Joystick *joy = NULL;
     int t1, t0;
 
+#ifdef __WII__
     chdir("/apps/neverball");
+    setenv("SDL_WII_JOYSTICK_SIDEWAYS", "1", 1);
+#endif
 
     if (!fs_init(argv[0]))
     {
