@@ -478,6 +478,7 @@ struct mode
 };
 
 static const struct mode modes[] = {
+    #ifndef __WII__
     { 2560, 1440 },
     { 1920, 1200 },
     { 1920, 1080 },
@@ -491,6 +492,10 @@ static const struct mode modes[] = {
     { 1280, 720 },
     { 1024, 768 },
     { 800, 600 },
+    #endif
+    #ifdef __WII__
+    { 854, 480},
+    #endif
     { 640, 480 },
     { 480, 320 },
     { 320, 240 }
