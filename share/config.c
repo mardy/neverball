@@ -129,13 +129,13 @@ static struct
     const int   def;
     int         cur;
 } option_d[] = {
-    #ifdef __wii__
+    #ifdef __WII__
     { &CONFIG_FULLSCREEN,   "fullscreen",   1 },
     #else
     { &CONFIG_FULLSCREEN,   "fullscreen",   0 },
     #endif
     { &CONFIG_DISPLAY,      "display",      0 },
-    #ifdef __wii__
+    #ifdef __WII__
     { &CONFIG_WIDTH,        "width",        640 },
     { &CONFIG_HEIGHT,       "height",       480 },
     #else
